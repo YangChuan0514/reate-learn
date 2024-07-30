@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Link, Outlet } from "react-router-dom";
+import "./App.css";
+import Counter from "./view/counter/Counter";
+import { useRef } from 'react'
 function App() {
+  const ref = useRef()
+  const showRef = () => {
+      ref.current.asyncFUnc()
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter ref={ref}></Counter>
+      <Link to={'/about'}>关于</Link>
+      <Link to={'/'}>面板</Link>
+      <Outlet></Outlet>
+      <button onClick={showRef}>展示内容</button>
     </div>
   );
 }
